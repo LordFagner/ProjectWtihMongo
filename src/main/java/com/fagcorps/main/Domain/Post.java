@@ -2,12 +2,15 @@ package com.fagcorps.main.Domain;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fagcorps.main.dto.AuthorDto;
+import com.fagcorps.main.dto.CommentsDto;
 
 @Document
 public class Post implements Serializable{
@@ -20,7 +23,15 @@ public class Post implements Serializable{
 	private String body; 
 	private AuthorDto Author; 
 	
+	List<CommentsDto> Comments = new ArrayList<>();
 	
+	
+	public List<CommentsDto> getComments() {
+		return Comments;
+	}
+
+
+
 	public Post() {
 		// TODO Auto-generated constructor stub
 	}

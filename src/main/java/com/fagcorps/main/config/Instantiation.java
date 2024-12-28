@@ -3,7 +3,6 @@ package com.fagcorps.main.config;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +12,8 @@ import com.fagcorps.main.Domain.Post;
 import com.fagcorps.main.Domain.User;
 import com.fagcorps.main.Repository.PostRepository;
 import com.fagcorps.main.Repository.UserRepository;
+import com.fagcorps.main.dto.AuthorDto;
+import com.fagcorps.main.dto.CommentsDto;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
@@ -46,10 +47,24 @@ public class Instantiation implements CommandLineRunner {
 		
 		maria.getPost().addAll(Arrays.asList(post1,post2)); 
 		bob	.getPost().addAll(Arrays.asList(post3,post5)); 
-		alex.getPost().add(post4); 
+		alex.getPost().add(post4); 		
 		
 		repository.saveAll(Arrays.asList(maria, alex, bob));
 
+		CommentsDto comment = new CommentsDto(new AuthorDto(maria), "vamos amanhã!!!");
+
+		CommentsDto comment1 = new CommentsDto(new AuthorDto(maria), "ok Vamos sim!!");
+		
+		CommentsDto comment2 = new CommentsDto(new AuthorDto(bob), "não vai dar não !!");
+		CommentsDto comment3 = new CommentsDto(new AuthorDto(alex), "vejo vocês lá !");
+		CommentsDto comment4 = new CommentsDto(new AuthorDto(maria), "Vamos sair amanhã!");
+		
+
+		post1.getComments().addAll(Arrays.asList(comment,comment1,comment2));
+		post2.getComments().addAll(Arrays.asList(comment4,comment3));
+		repositoryPost.saveAll(Arrays.asList(post1,post2,post3,post4,post5)); 
+
+		
 		
 
 		
