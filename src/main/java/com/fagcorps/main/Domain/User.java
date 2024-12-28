@@ -1,9 +1,12 @@
 package com.fagcorps.main.Domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class User implements Serializable{
@@ -13,6 +16,12 @@ public class User implements Serializable{
 	private String id;
 	private String email; 
 	private String name;
+	@DBRef(lazy = true)
+	private List <Post> Post = new ArrayList<>();
+	
+	public List<Post> getPost() {
+		return Post;
+	}
 	public User(String id, String email, String name) {
 		super();
 		this.id = id;

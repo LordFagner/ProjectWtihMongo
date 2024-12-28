@@ -40,9 +40,17 @@ public class Instantiation implements CommandLineRunner {
 		Post post3 = new Post(null, Instant.parse("2024-12-25T10:15:00Z"), "Holiday Greetings", "Wishing everyone a happy holiday season!",bob);
 		Post post4 = new Post(null, Instant.now(), "Tech Trends 2025", "Exploring the most anticipated technologies of 2025.",alex);
 		Post post5 = new Post(null, Instant.parse("2024-12-20T08:45:00Z"), "Code Snippets", "Here are some useful Java snippets for everyday programming.",bob);
-
 		
 		repositoryPost.saveAll(Arrays.asList(post1,post2,post3,post4,post5)); 
+
+		
+		maria.getPost().addAll(Arrays.asList(post1,post2)); 
+		bob	.getPost().addAll(Arrays.asList(post3,post5)); 
+		alex.getPost().add(post4); 
+		
+		repository.saveAll(Arrays.asList(maria, alex, bob));
+
+		
 
 		
 	}
