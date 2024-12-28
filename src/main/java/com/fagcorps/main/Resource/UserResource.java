@@ -20,6 +20,8 @@ import com.fagcorps.main.dto.UserDto;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -74,7 +76,14 @@ public ResponseEntity<UserDto> Delete(@PathVariable String id) {
 	
 	
 }
-
+@PutMapping(value = "/{id}")
+public ResponseEntity<UserDto> Update(@PathVariable String id, @RequestBody User entity) {
+    //TODO: process PUT request
+    UserDto user = new UserDto(service.Update(id, entity)); 
+	
+	
+    return ResponseEntity.accepted().body(user);
+}
 
 
 

@@ -55,11 +55,24 @@ public class UserServices {
 
 	public void DeleteById(String id) {
 		// TODO Auto-generated method stub
-		
+		FindById(id);
 		repository.deleteById(id);
 		
 		
 	}
 	
+	public User Update(String id , User user) {
+		
+		User user1 =  FindById(id);
+		user1.setEmail(user.getEmail());
+		user1.setName(user.getName());
+		
+		
+		return repository.save(user1);
+		
+		
+		
+		
+	}
 	
 }
